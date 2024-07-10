@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-free
+    container_name: oracle-db
+    ports:
+      - '1521:1521' # Puerto para conectarse a Oracle
+    environment:
+      - ORACLE_PASSWORD=root
+      - ORACLE_DATABASE=orcl
+      - APP_USER=yako
+      - APP_USER_PASSWORD=root
+
+    volumes:
+      - oracle-volume:/opt/oracle/oradata gvenzl/oracle-free
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movies_server
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - oracle-db
+    volumes:
+      - ./src:/app/src
+
+volumes:
+  oracle-volume:
+    driver: local

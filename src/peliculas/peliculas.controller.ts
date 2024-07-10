@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PeliculasService } from './peliculas.service';
 import { CreatePeliculaDto } from './dto/create-pelicula.dto';
 import { UpdatePeliculaDto } from './dto/update-pelicula.dto';
@@ -8,7 +16,7 @@ export class PeliculasController {
   constructor(private readonly peliculasService: PeliculasService) {}
 
   @Post()
-  create(@Body() createPeliculaDto: CreatePeliculaDto) {
+  create(@Body() createPeliculaDto: CreatePeliculaDto[]) {
     return this.peliculasService.create(createPeliculaDto);
   }
 
@@ -23,7 +31,10 @@ export class PeliculasController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePeliculaDto: UpdatePeliculaDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatePeliculaDto: UpdatePeliculaDto,
+  ) {
     return this.peliculasService.update(+id, updatePeliculaDto);
   }
 

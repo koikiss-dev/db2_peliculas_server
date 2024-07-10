@@ -10,7 +10,7 @@ const config: TypeOrmModuleOptions = {
   username: 'system',
   password: 'root',
   sid: 'free',
-  database: 'oracle-db',
+  database: 'FREEPDB1',
   entities: [Peliculas],
   synchronize: true,
   logging: true,
