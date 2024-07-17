@@ -5,7 +5,7 @@ import { type TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 const config: TypeOrmModuleOptions = {
   type: 'oracle',
-  host: 'localhost',
+  host: '147.182.218.166',
   port: 1521,
   username: 'system',
   password: 'root',
